@@ -117,3 +117,110 @@ int change_dir(char *name)
 	if (str_compare("-", name, MATCH) == TRUE)
 	{
 		pwd = get_array_element(environ, "OLDPWD");
+		if (pwd == NULL)
+			return (2);
+
+		while (*pwd != '=')
+		{
+			pwd++;
+		}
+		pwd++;
+
+		i = chdir((const char *)pwd);
+		if (i != -1)
+		{
+			write(STDOUT_FILENO, pwd, _strlen(pwd));
+			write(STDOUT_FILENO, "\n", 1);
+			_setenv("PWD", (const char *)pwd);
+		}
+	}
+	if (name != NULL && str_compare("~", name, MATCH) == FALSE
+		&& str_compare("$HOME", name, MATCH) == FALSE 
+		&& i != -1 && *name != '\0'
+		&& str_compare("-", name, MATCH) != TRUE)
+	{
+		i = chdir((const char *)name);
+		if (i != -1)
+			_setenv("PWD", (const char *)name);
+	}
+	if (i == -1)
+	{
+		status = 2;
+		err_message("cd", name);
+		return (SKIP_FORK);
+	}
+
+	status = 0;
+	_setenv("OLDPWD", (const char *)path_buffer);
+
+	return (SKIP_FORK);
+}
+
+/**
+ * alias_func - a function that deals with command aliases
+ * @args: arguments
+ * @to_free: indicated if aliases need to be freed
+ *
+ * Return: TRUE if exiting, FALSE if is not alias
+ * SKIP_FORK if success
+ */
+int alias_func(char **args, int to_free)
+{
+	static alias head = {NULL, NULL, NULL};
+	char *char_ptr;
+	int no_error = TRUE;
+
+	if (to_free == TRUE)
+		return (free_aliases(head.next));
+
+	args++;
+
+	if (*args == NULL)
+		return (print_aliases(head.next));
+
+	while (*args != NULL)
+	{
+		char_ptr = *args;
+		while (*char_ptr != '\0' && *char_ptr != '=')
+			char_ptr++;
+
+		if (*char_ptr == '\0' || char_ptr == *args)
+		{
+			if (print_alias_value(*args, &head) == FALSE)
+				no_error = FALSE;
+		}
+		else
+		{
+			*char_ptr = '\0';
+			char_ptr++;
+			set_alias_value(*args, &head, char_ptr);
+			*(char_ptr - 1) = '=';
+		}
+		args++;
+	}
+
+	if (no_error == FALSE)
+		return (SKIP_FORK);
+
+	status = 0;
+	return (SKIP_FORK);
+}
+/**
+ * print_env - prints the environment
+ * Return: TRUE
+ */
+int print_env(void)
+{
+	char **ptr = environ;
+
+	while (*ptr != NULL)
+	{
+		write(STDOUT_FILENO, *ptr, _strlen(*ptr));
+		write(STDOUT_FILENO, "\n", 1);
+		ptr++;
+	}
+	 status = 0;
+
+	 return (SKIP_FORK);
+}
+
