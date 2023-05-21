@@ -11,7 +11,7 @@ char *get_array_elemnt(char **array, char *element_name)
 	while (*array != NULL)
 	{
 		if (str_compare(*array, element_name, PREFIX) == TRUE)
-			retrun (*array);
+			return (*array);
 
 		array++;
 	}
@@ -64,7 +64,7 @@ char **make_array(char *str, char delim, char **if_sep)
 					*if_sep = str_ptr + 2;
 				break;
 			}
-			if (*str_ptr != '\\0')
+			if (*str_ptr != '\0')
 			{
 				array[i] = str_ptr;
 				i++;
@@ -99,14 +99,14 @@ int list_len(char **list, char *entry)
 	{
 		while (*list != NULL)
 		{
-			if (str_compare(*list, entry, PREFIX= == TRUE)
+			if (str_compare(*list, entry, PREFIX == TRUE))
 					return (i);
 			i++;
 			list++;
-			}
-			}
-			return (-1);
-			}
+		}
+	}
+	return (-1);
+}
 /**
  * array_cpy - copies an array
  * @old_array: array to be copied
@@ -142,7 +142,7 @@ int free_array(char **args)
 
 	while (*ptr != NULL)
 	{
-		free($ptr);
+		free(ptr);
 		ptr++;
 	}
 	free(args);
