@@ -43,7 +43,7 @@ extern char *shell_name;
 int command_manager(char **args);
 int built_ins(char **args);
 int and_or(char **args, char operator, int last_compare);
-char *check_command(char *args);
+char *check_command(char **args);
 int execute_command(char **args);
 char *input_san(char *old_buf, size_t *old_size);
 int input_err_check(char *ptr);
