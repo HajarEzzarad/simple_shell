@@ -28,7 +28,7 @@
  * @next: points to next node
  */
 
-typedef struct Alis
+typedef struct Alias
 {
 	char *name;
 	char *value;
