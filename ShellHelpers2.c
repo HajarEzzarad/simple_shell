@@ -63,7 +63,7 @@ char *input_san(char *old_buf, size_t *old_size)
 				*new_ptr = ' ';
 				old_ptr++;
 			}
-			new_ptrt++;
+			new_ptr++;
 			old_ptr++;
 		}
 	}
@@ -94,7 +94,7 @@ int input_err_check(char *ptr)
 
 	if (*iter == ';' || *iter == '|' || *iter == '&')
 	{
-		errr_message(iter, NULL);
+		err_message(iter, NULL);
 		return (FALSE);
 	}
 	return (TRUE);
@@ -186,7 +186,7 @@ char *check_for_vars(char *arg)
 			else if (str_compare("$0", ptr, MATCH) == TRUE)
 				tmp = _strdup(shell_name);
 			else if (get_array_element(environ, ptr + 1) != NULL)
-				tmp = _strup(get_array_element(environ, ptr + 1) + _strlen(ptr));
+				tmp = _strdup(get_array_element(environ, ptr + 1) + _strlen(ptr));
 			else
 				tmp = _strdup("");
 
