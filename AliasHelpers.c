@@ -71,8 +71,8 @@ int print_alias_value(char *arg, alias *alias_ptr)
 		fflush(stdin);
 		if (str_compare(arg, alias_ptr->name, MATCH) == TRUE)
 		{
-			write(STDOUT_FINLENO, arg, _strlen(arg));
-			write(STDOT_FILENO, "=\'", 2);
+			write(STDOUT_FILENO, arg, _strlen(arg));
+			write(STDOUT_FILENO, "=\'", 2);
 			write(STDOUT_FILENO, alias_ptr->value, _strlen(alias_ptr->value));
 			write(STDOUT_FILENO, "\'\n", 2);
 			return (TRUE);
@@ -80,7 +80,7 @@ int print_alias_value(char *arg, alias *alias_ptr)
 		alias_ptr = alias_ptr->next;
 	}
 	status = 1;
-	write(STRDERR_FILENO, "alias: ", 7);
+	write(STDERR_FILENO, "alias: ", 7);
 	write(STDERR_FILENO, arg, _strlen(arg));
 	write(STDERR_FILENO, " not found\n", 11);
 
@@ -94,7 +94,7 @@ int print_alias_value(char *arg, alias *alias_ptr)
  * @new_value: value of alias
  * Return: TRUE
  */
-int set_alias_value(char *arg, *alias_ptr, char *new_value)
+int set_alias_value(char *arg, alias *alias_ptr, char *new_value)
 {
 	while (!alias_ptr->next && str_compare(alias_ptr->name, arg, MATCH) != TRUE)
 	{
