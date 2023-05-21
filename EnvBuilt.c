@@ -32,7 +32,7 @@ int _setenv(const char *name, const char *value)
 		new_environ = array_cpy(environ, len + 1);
 		new_environ[len - 1] = buffer;
 		new_environ[len] = NULL;
-		free_aray(environ);
+		free_array(environ);
 		environ = new_environ;
 		return (SKIP_FORK);
 	}
@@ -49,7 +49,7 @@ int _setenv(const char *name, const char *value)
  * @name: name of variable
  * Return: 0 (Success)
  */
-int _unsetenv(const cchar *name)
+int _unsetenv(const char *name)
 {
 	char **env_ptr;
 	int len = list_len(environ, (char *)name);
@@ -88,7 +88,7 @@ int change_dir(char *name)
 
 	getcwd(path_buffer, buf_size);
 
-	if (name == NULL || str_commpare("~", anme, PREFIX) == TRUE || str_compare("$HOME", name, MATCH) == TRUE)
+	if (name == NULL || str_compare("~", name, PREFIX) == TRUE || str_compare("$HOME", name, MATCH) == TRUE)
 	{
 		if (name != NULL && *name == '~' &&& *(name + 1) != '\0' && *(name + 1) != '/')
 		{
