@@ -68,7 +68,7 @@ int main(__attribute__((unused))int ac, char **av)
 
 		free(args);
 
-		if (is_separated = FALSE)
+		if (is_separated == FALSE)
 			line_num++;
 
 		if (i == EXIT_SHELL)
