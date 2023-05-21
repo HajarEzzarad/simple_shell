@@ -90,7 +90,7 @@ int change_dir(char *name)
 
 	if (name == NULL || str_compare("~", name, PREFIX) == TRUE || str_compare("$HOME", name, MATCH) == TRUE)
 	{
-		if (name != NULL && *name == '~' &&& *(name + 1) != '\0' && *(name + 1) != '/')
+		if (name != NULL && *name == '~' && *(name + 1) != '\0' && *(name + 1) != '/')
 		{
 			status = 2;
 			err_message("cd", name);
