@@ -172,7 +172,7 @@ int and_or(char **args, char operator, int last_compare)
  *
  * Return: TRUE if valid command, FALSE if not
  */
-char *check_command(char **args)
+char *check_command(char *args)
 {
 	char *commandBuf;
 	char *fullBUF;
@@ -195,7 +195,7 @@ char *check_command(char **args)
 		if (*pathSTR == ':')
 		{
 			commandBuf = str_concat("./", *args);
-			if (access(command_buf, X_OK) == 0)
+			if (access(commandBuf, X_OK) == 0)
 			{
 				free(pathSTR);
 				return (commandBuf);
