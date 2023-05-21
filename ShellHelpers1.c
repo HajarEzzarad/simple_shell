@@ -172,7 +172,7 @@ int and_or(char **args, char operator, int last_compare)
  *
  * Return: TRUE if valid command, FALSE if not
  */
-char *check_command(char *args)
+char *check_command(char **args)
 {
 	char *commandBuf;
 	char *fullBUF;
