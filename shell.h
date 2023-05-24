@@ -48,7 +48,7 @@ void _sigint(int signal);
 void free_array(char **array);
 char **_realloc(char **ptr, size_t size);
 void command_path(input *data);
-int _strlen(char **str);
+int _strlen(char *str);
 char *get_env(char *env_var);
 int _which(input *data);
 char *_strdup(const char *s1);
