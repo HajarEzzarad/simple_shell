@@ -39,7 +39,7 @@ char **_realloc(char **ptr, size_t size)
 	s = malloc(size);
 	while (ptr[length])
 	{
-		s[length] = _strup(ptr[length]);
+		s[length] = _strdup(ptr[length]);
 		free(ptr[length]);
 		length++;
 	}
