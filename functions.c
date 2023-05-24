@@ -50,7 +50,7 @@ void command_line(input *data)
 	size_t n = 0;
 	ssize_t nb;
 
-	nb = getLine(&data->command, &n, stdin);
+	nb = getline(&data->command, &n, stdin);
 
 	if (nb == -1)
 	{
