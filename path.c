@@ -50,7 +50,7 @@ free:
  * Return: value of an environment variable
  */
 
-char *getenv(char *name)
+char *_getenv(char *name)
 {
 	int i = -1;
 	size_t name_len;
