@@ -9,13 +9,13 @@
 int _path(input *data)
 {
 	char *source, *path;
-	char *ps = malloc(_strlen(_getenv("PATH") ? _getenv("PATH") : "") + 1);
+	char *ps = malloc(_strlen(getenv("PATH") ? getenv("PATH") : "") + 1);
 	size_t source_len;
 	int i = -1;
 
-	if (!_getenv("PATH"))
+	if (!getenv("PATH"))
 		goto free;
-	_strcpy(ps, _getenv("PATH"));
+	_strcpy(ps, getenv("PATH"));
 	if (ps == NULL)
 		goto free;
 
@@ -32,7 +32,7 @@ int _path(input *data)
 		if (access(path, F_OK) == 0)
 		{
 			free(data->av[0]);
-			data->av[0] = _strup(path);
+			data->av[0] = _strdup(path);
 			free(path);
 			i = 0;
 			break;
@@ -50,7 +50,7 @@ free:
  * Return: value of an environment variable
  */
 
-char *_getenv(char *name)
+char *getenv(char *name)
 {
 	int i = -1;
 	size_t name_len;
