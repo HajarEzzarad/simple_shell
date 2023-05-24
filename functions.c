@@ -47,6 +47,7 @@ free:
 
 void command_line(input *data)
 {
+	int i = 0;
 	size_t n = 0;
 	ssize_t nb;
 
@@ -59,6 +60,17 @@ void command_line(input *data)
 	}
 
 	data->command[nb - 1] = '\0';
+	_white_spaces(data->command);
+	while (data->command[i] != '\0')
+	{
+		if (data->command[i] == '#')
+		{
+			data->command[i] = '\0';
+			break;
+		}
+		i++;
+	}
+	_white_spaces(data->command);
 }
 /**
  * _sigint - signal
