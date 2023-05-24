@@ -47,15 +47,15 @@ void builtin_env(input *data);
 void _sigint(int signal);
 void free_array(char **array);
 char **_realloc(char **ptr, size_t size);
-void    command_path(input *data);
-int	_strlen(char	*str);
+void command_path(input *data);
+int _strlen(char *str);
 char *get_env(char *env_var);
 int _which(input *data);
-char	*_strdup(const char *s1);
-char	*_strcat(char	*dest, char	*src);
-char	*_strcpy(char	*dest, char	*src);
+char *_strdup(const char *s1);
+char *_strcat(char *dest, char *src);
+char *_strcpy(char *dest, char *src);
 int _atoi(char *s);
-int	_strcmp(char	*s1, char	*s2);
-int	_strncmp(char *s1, char *s2, unsigned int n);
+int _strcmp(char *s1, char *s2);
+int _strncmp(char *s1, char *s2, unsigned int n);
 
 #endif
