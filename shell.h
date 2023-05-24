@@ -22,7 +22,7 @@ typedef struct input
 	char **av;
 	char **command;
 	const char *shell_name;
-}input;
+} input;
 
 /**
  * struct builtin - holds the main data.
@@ -50,12 +50,14 @@ char **_realloc(char **ptr, size_t size);
 void command_path(input *data);
 int _strlen(char *str);
 char *get_env(char *env_var);
-int _which(input *data);
+int path_handling(input *data);
 char *_strdup(const char *s1);
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
 int _atoi(char *s);
 int _strcmp(char *s1, char *s2);
 int _strncmp(char *s1, char *s2, unsigned int n);
+void _white_spaces(char *s);
+void h_cmd(char *str);
 
 #endif
