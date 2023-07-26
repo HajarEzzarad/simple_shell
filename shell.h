@@ -39,13 +39,13 @@ extern char **environ;
 
 /**
  * struct lists - singly linked list
- * @n: the number field
+ * @nmb: the number field
  * @s: a string
  * @n: points to the next node
  */
 typedef struct lists
 {
-	int n;
+	int nmb;
 	char *s;
 	struct lists *n;
 } list_t;
@@ -171,7 +171,7 @@ char *conv_number(long int, int, int);
 void rm_comments(char *);
 
 /* built.c */
-int _exit(info_t *);
+int _myexit(info_t *);
 int _cd(info_t *);
 int _help(info_t *);
 
