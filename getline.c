@@ -18,7 +18,7 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 		/*bfree((void **)info->cmd_buf);*/
 		free(*buf);
 		*buf = NULL;
-		signal(SIGINT, sigintHandler);
+		signal(SIGINT, sigintHand);
 		r = getline(buf, &len_p, stdin);
 		r = _getline(info, buf, &len_p);
 		if (r > 0)
@@ -30,7 +30,7 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 			}
 			info->linecount_flag = 1;
 			rm_comments(*buf);
-			build_history_list(info, *buf, info->histocount++);
+			build_hist_list(info, *buf, info->histocount++);
 			*len = r;
 			info->comd_buffer = buf;
 		}
@@ -63,7 +63,7 @@ ssize_t get_input(info_t *info)
 		checkchain(info, buf, &j, i, len);
 		while (j < len)
 		{
-			if (_ischain(info, buf, &j))
+			if (ischain(info, buf, &j))
 				break;
 			j++;
 		}
@@ -123,20 +123,20 @@ int _getline(info_t *info, char **ptr, size_t *length)
 	if (i == len)
 		i = len = 0;
 
-	r = read_buffer(info, buf, &len);
-	if (r == -1 || (r == 0 && len == 0))
+	res = read_buffer(info, buffer, &len);
+	if (res == -1 || (res == 0 && len == 0))
 		return (-1);
 
-	c = _strchr(buf + i, '\n');
-	j = c ? 1 + (unsigned int)(c - buf) : len;
-	new_p = _realloc(p, s, s ? s + j : j + 1);
+	c = _strchr(buffer + i, '\n');
+	j = c ? 1 + (unsigned int)(c - buffer) : len;
+	new_ptr = _realloc(p, s, s ? s + j : j + 1);
 	if (!new_ptr)
 		return (p ? free(p), -1 : -1);
 
 	if (s)
-		_strncat(new_ptr, buf + i, j - i);
+		_strncat(new_ptr, buffer + i, j - i);
 	else
-		_strncpy(new_ptr, buf + i, j - i + 1);
+		_strncpy(new_ptr, buffer + i, j - i + 1);
 
 	s += j - i;
 	i = j;
