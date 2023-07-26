@@ -11,7 +11,7 @@ char *gethistoryfile(info_t *info)
 {
 	char *buf, *dir;
 
-	dir = _getenviron(info, "HOME=");
+	dir = _getenv(info, "HOME=");
 	if (!dir)
 		return (NULL);
 	buf = malloc(sizeof(char) * (_strlen(dir) + _strlen(HISTORY_FILE) + 2));
@@ -92,7 +92,7 @@ int read_hist(info_t *info)
 			last = i + 1;
 		}
 	if (last != i)
-		build_history_list(info, buf + last, linecount++);
+		build_hist_list(info, buf + last, linecount++);
 	free(buf);
 	info->histocount = linecount;
 	while (info->histocount-- >= HISTORY_MAX)
