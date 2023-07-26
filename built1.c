@@ -23,7 +23,7 @@ int unset_al(info_t *info, char *s)
 	char *p, c;
 	int rt;
 
-	p = _strchr(str, '=');
+	p = _strchr(s, '=');
 	if (!p)
 		return (1);
 	c = *p;
@@ -45,13 +45,13 @@ int set_al(info_t *info, char *s)
 {
 	char *p;
 
-	p = _strchr(str, '=');
+	p = _strchr(s, '=');
 	if (!p)
 		return (1);
 	if (!*++p)
-		return (unset_alias(info, str));
+		return (unset_al(info, s));
 
-	unset_alias(info, str);
+	unset_al(info, s);
 	return (add_node_end(&(info->alias), str, 0) == NULL);
 }
 
@@ -103,7 +103,7 @@ int _alias(info_t *info)
 	{
 		p = _strchr(info->argv[index], '=');
 		if (p)
-			set_alias(info, info->argv[index]);
+			set_al(info, info->argv[index]);
 		else
 			print_al(node_starts_with(info->al, info->argv[index], '='));
 		index++;
