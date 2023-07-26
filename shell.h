@@ -45,9 +45,9 @@ extern char **environ;
  */
 typedef struct lists
 {
-	int nmb;
+	int num;
 	char *s;
-	struct lists *n;
+	struct lists *next;
 } list_t;
 
 /**
