@@ -52,7 +52,7 @@ int set_al(info_t *info, char *s)
 		return (unset_al(info, s));
 
 	unset_al(info, s);
-	return (add_node_end(&(info->alias), str, 0) == NULL);
+	return (add_node_end(&(info->al), s, 0) == NULL);
 }
 
 /**
