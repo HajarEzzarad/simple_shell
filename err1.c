@@ -38,7 +38,7 @@ int _erroratoi(char *str)
  */
 void print_err(info_t *info, char *errstr)
 {
-	_errputs(info->fname);
+	_errputs(info->filename);
 	_errputs(": ");
 	print_dec(info->line_count, STDERR_FILENO);
 	_errputs(": ");
@@ -75,7 +75,7 @@ int print_dec(int input, int fd)
 	{
 		if (abs / i)
 		{
-			__putchar('0' + current / i);
+			__putchar('0' + cur / i);
 			count++;
 		}
 		cur %= i;
