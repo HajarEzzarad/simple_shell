@@ -13,7 +13,7 @@ void _errputs(char *s)
 		return;
 	for (index = 0; s[index] != '\0'; index++)
 	{
-		_errputchar(s[i]);
+		_errputchar(s[index]);
 	}
 }
 
@@ -28,7 +28,7 @@ int _errputchar(char c)
 	static int index;
 	static char buffer[WRITE_BUFFER_SIZE];
 
-	if (c == BUF_FLUSH || index >= WRITE_BUFFER_SIZE)
+	if (c == BUFFER_FLUSH || index >= WRITE_BUFFER_SIZE)
 	{
 		write(2, buffer, index);
 		index = 0;
@@ -53,7 +53,7 @@ int _putfiledesc(char c, int fd)
 	if (c == BUFFER_FLUSH || index >= WRITE_BUFFER_SIZE)
 	{
 		write(fd, buffer, index);
-		i = 0;
+		index = 0;
 	}
 	if (c != BUFFER_FLUSH)
 		buffer[index++] = c;
