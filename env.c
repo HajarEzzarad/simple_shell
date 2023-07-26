@@ -25,7 +25,7 @@ char *_getenv(info_t *info, const char *name)
 
 	while (n)
 	{
-		p = starts_with(node->s, name);
+		p = starts_with(n->s, name);
 		if (p && *p)
 			return (p);
 		n = n->next;
