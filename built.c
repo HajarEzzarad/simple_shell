@@ -62,8 +62,8 @@ int _cd(info_t *info)
 		chdir_rt = chdir((dir = _getenv(info, "OLDPWD=")) ? dir : "/");
 	}
 	else
-		chdir_ret = chdir(info->argv[1]);
-	if (chdir_ret == -1)
+		chdir_rt = chdir(info->argv[1]);
+	if (chdir_rt == -1)
 	{
 		print_err(info, "can't cd to ");
 		_errputs(info->argv[1]), _errputchar('\n');
