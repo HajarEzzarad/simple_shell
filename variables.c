@@ -82,7 +82,7 @@ int replace_al(info_t *info)
 	for (i = 0; i < 10; i++)
 	{
 		n = node_starts_with(info->al, info->argv[0], '=');
-		if (!node)
+		if (!n)
 			return (0);
 		free(info->argv[0]);
 		p = _strchr(n->s, '=');
