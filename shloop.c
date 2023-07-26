@@ -107,7 +107,7 @@ void find_comd(info_t *info)
 	{
 		if ((interactive(info) || _getenv(info, "PATH=")
 			|| info->argv[0][0] == '/') && iscmd(info, info->argv[0]))
-			f_cmd(info);
+			f_comd(info);
 		else if (*(info->arg) != '\n')
 		{
 			info->st = 127;
