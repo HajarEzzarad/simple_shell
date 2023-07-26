@@ -1,16 +1,16 @@
 #include "shell.h"
 
 /**
- * _exit - a function that exits the shell
+ * _myexit - a function that exits the shell
  * @inf: Structure containing potential arguments.
  * Return: exits with a given exit status
  * (0) if info.argv[0] != "exit"
  */
-int _exit(info_t *inf)
+int _myexit(info_t *inf)
 {
 	int exit;
 
-	if (inf->argv[1])  /* If there is an exit arguement */
+	if (inf->argv[1])
 	{
 		exit = _erroratoi(inf->argv[1]);
 		if (exit == -1)
@@ -59,20 +59,19 @@ int _cd(info_t *info)
 			return (1);
 		}
 		_puts(_getenv(info, "OLDPWD=")), _putchar('\n');
-		chdir_ret = /* TODO: what should this be? */
-			chdir((dir = _getenv(info, "OLDPWD=")) ? dir : "/");
+		chdir_rt = chdir((dir = _getenv(info, "OLDPWD=")) ? dir : "/");
 	}
 	else
 		chdir_ret = chdir(info->argv[1]);
 	if (chdir_ret == -1)
 	{
-		print_error(info, "can't cd to ");
-		_eputs(info->argv[1]), _eputchar('\n');
+		print_err(info, "can't cd to ");
+		_errputs(info->argv[1]), _errputchar('\n');
 	}
 	else
 	{
 		_setenv(info, "OLDPWD", _getenv(info, "PWD="));
-		_setenv(info, "PWD", getcwd(buffer, 1024));
+		_setenv(info, "PWD", getcwd(buf, 1024));
 	}
 	return (0);
 }
