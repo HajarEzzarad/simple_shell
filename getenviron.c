@@ -74,7 +74,7 @@ int _setenv(info_t *info, char *v, char *val)
 	n = info->env;
 	while (n)
 	{
-		p = starts_with(n->str, v);
+		p = starts_with(n->s, v);
 		if (p && *p == '=')
 		{
 			free(n->s);
