@@ -7,7 +7,7 @@
  */
 int inter(info_t *info)
 {
-	return (isatty(STDIN_FILENO) && info->readfd <= 2);
+	return (isatty(STDIN_FILENO) && info->readfiledesc <= 2);
 }
 
 /**
