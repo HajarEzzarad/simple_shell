@@ -39,9 +39,9 @@ extern char **environ;
 
 /**
  * struct lists - singly linked list
- * @nmb: the number field
+ * @num: the number field
  * @s: a string
- * @n: points to the next node
+ * @next: points to the next node
  */
 typedef struct lists
 {
