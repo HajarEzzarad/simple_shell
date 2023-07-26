@@ -113,7 +113,7 @@ int replace_v(info_t *info)
 
 		if (!_strcmp(info->argv[i], "$?"))
 		{
-			replace_string(&(info->argv[i]),
+			replace_str(&(info->argv[i]),
 				_strdup(conv_number(info->st, 10, 0)));
 			continue;
 		}
@@ -127,7 +127,7 @@ int replace_v(info_t *info)
 		if (n)
 		{
 			replace_str(&(info->argv[i]),
-				_strdup(_strchr(n->str, '=') + 1));
+				_strdup(_strchr(n->s, '=') + 1));
 			continue;
 		}
 		replace_str(&info->argv[i], _strdup(""));
