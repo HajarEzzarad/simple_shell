@@ -22,7 +22,7 @@ int hshell(info_t *info, char **av)
 		{
 			setinfo(info, av);
 			built_ret = find_built(info);
-			if (builtin_ret == -1)
+			if (built_ret == -1)
 				find_comd(info);
 		}
 		else if (interactive(info))
@@ -35,9 +35,9 @@ int hshell(info_t *info, char **av)
 		exit(info->st);
 	if (built_ret == -2)
 	{
-		if (info->err_num == -1)
+		if (info->err_n == -1)
 			exit(info->st);
-		exit(info->err_num);
+		exit(info->err_n);
 	}
 	return (built_ret);
 }
@@ -54,12 +54,12 @@ int find_built(info_t *info)
 {
 	int i, built_ret = -1;
 	built_t builttbl[] = {
-		{"exit", _exit},
-		{"env", _env},
+		{"exit", _myexit},
+		{"env", _envm},
 		{"help", _help},
 		{"history", _history},
-		{"setenv", _setenv},
-		{"unsetenv", _unsetenv},
+		{"setenv", _setenvm},
+		{"unsetenv", _unsetenvm},
 		{"cd", _cd},
 		{"alias", _alias},
 		{NULL, NULL}
@@ -69,7 +69,7 @@ int find_built(info_t *info)
 		if (_strcmp(info->argv[0], builttbl[i].type) == 0)
 		{
 			info->line_count++;
-			built_ret = builttbl[i].func(info);
+			built_ret = builttbl[i].f(info);
 			break;
 		}
 	return (built_ret);
@@ -97,7 +97,7 @@ void find_comd(info_t *info)
 	if (!j)
 		return;
 
-	p = find_path(info, _getenviron(info, "PATH="), info->argv[0]);
+	p = find_path(info, _getenv(info, "PATH="), info->argv[0]);
 	if (p)
 	{
 		info->p = p;
@@ -105,7 +105,7 @@ void find_comd(info_t *info)
 	}
 	else
 	{
-		if ((interactive(info) || _getenviron(info, "PATH=")
+		if ((interactive(info) || _getenv(info, "PATH=")
 			|| info->argv[0][0] == '/') && iscmd(info, info->argv[0]))
 			f_cmd(info);
 		else if (*(info->arg) != '\n')
@@ -117,12 +117,12 @@ void find_comd(info_t *info)
 }
 
 /**
- * f_cmd - forks a an exec thread to run cmd
+ * f_comd - forks a an exec thread to run cmd
  * @info: the parameter & return info struct
  *
  * Return: void
  */
-void f_cmd(info_t *info)
+void f_comd(info_t *info)
 {
 	pid_t child_pid;
 
