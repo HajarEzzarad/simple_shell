@@ -7,13 +7,14 @@
  */
 void _errputs(char *s)
 {
-	int index;
+	int index = 0;
 
 	if (!s)
 		return;
-	for (index = 0; s[index] != '\0'; index++)
+	while (s[index] != '\0')
 	{
 		_errputchar(s[index]);
+		index++;
 	}
 }
 
@@ -72,10 +73,9 @@ int _putsfiledesc(char *s, int fd)
 
 	if (!s)
 		return (0);
-	while (s[index])
+	while (*s)
 	{
 		index += _putfiledesc(*s++, fd);
 	}
 	return (index);
 }
-
