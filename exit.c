@@ -20,20 +20,16 @@ char *_strncpy(char *dest, char *src, int n)
 	}
 	if (i < n)
 	{
-		j = i;
-		while (j < n)
-		{
+		for (j = i; j < n; j++)
 			dest[j] = '\0';
-			j++;
-		}
 	}
 	return (s);
 }
 
 /**
- **_strncat - concatenates two strings
- *@dest: the first string
- *@src: the second string
+ **_strncat - a function that concatenates two strings
+ *@dest: the destination string
+ *@src: the source string
  *@n: the amount of bytes to be maximally used
  *Return: the concatenated string
  */
@@ -47,11 +43,10 @@ char *_strncat(char *dest, char *src, int n)
 
 	while (dest[i] != '\0')
 		i++;
-	while (src[j] != '\0' && j < n)
+	for (; src[j] != '\0' && j < n; j++)
 	{
 		dest[i] = src[j];
 		i++;
-		j++;
 	}
 	if (j < n)
 		dest[i] = '\0';
