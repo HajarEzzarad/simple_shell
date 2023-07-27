@@ -13,7 +13,7 @@ int _erroratoi(char *str)
 
 	if (*str == '+')
 		str++;  /* TODO: why does this make main return 255? */
-	while (str[index] != '\0')
+	for (index = 0; str[index] != '\0'; index++)
 	{
 		if (str[index] >= '0' && str[index] <= '9')
 		{
@@ -24,7 +24,6 @@ int _erroratoi(char *str)
 		}
 		else
 			return (-1);
-		index++;
 	}
 	return (res);
 }
@@ -130,16 +129,14 @@ char *conv_number(long int num, int b, int fl)
  */
 void rm_comments(char *buffer)
 {
-	int i;
+	int index;
 
-	i = 0;
-	while (buffer[i] != '\0')
+	for (index = 0; buffer[index] != '\0'; index++)
 	{
-		if (buffer[i] == '#' && (!i || buffer[i - 1] == ' '))
+		if (buffer[index] == '#' && (!index || buffer[index - 1] == ' '))
 		{
-			buffer[i] = '\0';
+			buffer[index] = '\0';
 			break;
 		}
-		i++;
 	}
 }
