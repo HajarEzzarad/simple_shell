@@ -12,8 +12,8 @@ int _envm(info_t *info)
 }
 
 /**
- * _getenv - a function gets the value of an environ variable
- * @info: Structure containing potential arguments.
+ * _getenv - a function that gets the value of an environ variable
+ * @info: Structure arguments.
  * @name: environ variable name
  *
  * Return: the value
@@ -43,7 +43,7 @@ int _setenvm(info_t *info)
 {
 	if (info->argc != 3)
 	{
-		_errputs("Incorrect number of arguements\n");
+		_errputs("\t\tincorrect number \n");
 		return (1);
 	}
 	if (_setenv(info, info->argv[1], info->argv[2]))
@@ -62,12 +62,16 @@ int _unsetenvm(info_t *info)
 
 	if (info->argc == 1)
 	{
-		_errputs("Too few arguements.\n");
+		_errputs("\t\t too few arguements\n");
 		return (1);
 	}
 
-	for (index = 1; index <= info->argc; index++)
+	index = 1;
+	while (index <= info->argc)
+	{
 		_unsetenv(info, info->argv[index]);
+		index++;
+	}
 	return (0);
 }
 
@@ -81,8 +85,12 @@ int pop_env_list(info_t *info)
 	list_t *n = NULL;
 	size_t index;
 
-	for (index = 0; environ[index]; index++)
+	index = 0;
+	while (environ[index])
+	{
 		add_node_end(&n, environ[index], 0);
+		index++;
+	}
 	info->env = n;
 	return (0);
 }
