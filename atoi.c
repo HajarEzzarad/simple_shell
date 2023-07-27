@@ -5,7 +5,7 @@
  * @info: struct address
  * Return: 1 if interactive mode, 0 otherwise
  */
-int inter(info_t *info)
+int interactive(info_t *info)
 {
 	return (isatty(STDIN_FILENO) && info->readfiledesc <= 2);
 }
