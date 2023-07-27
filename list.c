@@ -80,13 +80,14 @@ list_t *add_node_end(list_t **head, const char *s, int num)
  */
 size_t print_list_str(const list_t *h)
 {
-	size_t i;
+	size_t i = 0;
 
-	for (i = 0; h; i++)
+	while (h)
 	{
 		_puts(h->s ? h->s : "(nil)");
 		_puts("\n");
 		h = h->next;
+		i++;
 	}
 	return (i);
 }
