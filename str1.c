@@ -9,15 +9,12 @@
  */
 char *_strcpy(char *dest, char *src)
 {
-	int i = 0;
+	int i;
 
 	if (dest == src || src == 0)
 		return (dest);
-	while (src[i])
-	{
+	for (i = 0; src[i]; i++)
 		dest[i] = src[i];
-		i++;
-	}
 	dest[i] = 0;
 	return (dest);
 }
@@ -53,15 +50,12 @@ char *_strdup(const char *str)
  */
 void _puts(char *str)
 {
-	int i = 0;
+	int i;
 
 	if (!str)
 		return;
-	while (str[i] != '\0')
-	{
+	for (i = 0; str[i] != '\0'; i++)
 		_putchar(str[i]);
-		i++;
-	}
 }
 
 /**
