@@ -19,8 +19,11 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 		free(*buf);
 		*buf = NULL;
 		signal(SIGINT, sigintHand);
+#if USE_GETLINE
 		r = getline(buf, &len_p, stdin);
+#else
 		r = _getline(info, buf, &len_p);
+#endif
 		if (r > 0)
 		{
 			if ((*buf)[r - 1] == '\n')
@@ -31,8 +34,11 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 			info->linecount_flag = 1;
 			rm_comments(*buf);
 			build_hist_list(info, *buf, info->histocount++);
-			*len = r;
-			info->comd_buffer = buf;
+			/* if (_strchr(*buf, ';')) is this a command chain? */
+			{
+				*len = r;
+				info->comd_buffer = buf;
+			}
 		}
 	}
 	return (r);
