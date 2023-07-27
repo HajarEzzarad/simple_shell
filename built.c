@@ -2,38 +2,38 @@
 
 /**
  * _myexit - a function that exits the shell
- * @inf: Structure containing potential arguments.
+ * @info: Structure containing potential arguments.
  * Return: exits with a given exit status
  * (0) if info.argv[0] != "exit"
  */
-int _myexit(info_t *inf)
+int _myexit(info_t *info)
 {
 	int exit;
 
-	if (inf->argv[1])
+	if (info->argv[1])
 	{
 		exit = _erroratoi(inf->argv[1]);
 		if (exit == -1)
 		{
-			inf->st = 2;
-			print_err(inf, "Illegal number: ");
-			_errputs(inf->argv[1]);
+			info->st = 2;
+			print_err(info, "Illegal number: ");
+			_errputs(info->argv[1]);
 			_errputchar('\n');
 			return (1);
 		}
-		inf->err_n = _erroratoi(inf->argv[1]);
+		info->err_n = _erroratoi(info->argv[1]);
 		return (-2);
 	}
-	inf->err_n = -1;
+	info->err_n = -1;
 	return (-2);
 }
 
 /**
- * _cd - a function that changes the current directory of the process
+ * _mcd - a function that changes the current directory of the process
  * @info: Structure containing potential arguments.
  *  Return: Always 0
  */
-int _cd(info_t *info)
+int _mcd(info_t *info)
 {
 	char *s, *dir, buf[1024];
 	int chdir_rt;
@@ -77,15 +77,15 @@ int _cd(info_t *info)
 }
 
 /**
- * _help - a function that changes the current direc of the process
- * @inf: Structure containing potential arguments.
+ * _mhelp - a function that changes the current direc of the process
+ * @info: Structure containing potential arguments.
  *  Return: 0
  */
-int _help(info_t *inf)
+int _mhelp(info_t *info)
 {
 	char **arg_arr;
 
-	arg_arr = inf->argv;
+	arg_arr = info->argv;
 	_puts("help call\n");
 	if (0)
 		_puts(*arg_arr);
