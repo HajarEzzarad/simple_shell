@@ -30,8 +30,9 @@ char **strtow(char *str, char *d)
 	{
 		while (is_delim(str[i], d))
 			i++;
-		for (k = 0; !is_delim(str[i + k], d) && str[i + k]; k++)
-			;
+		k = 0;
+		while (!is_delim(str[i + k], d) && str[i + k])
+			k++;
 		s[j] = malloc((k + 1) * sizeof(char));
 		if (!s[j])
 		{
@@ -40,12 +41,8 @@ char **strtow(char *str, char *d)
 			free(s);
 			return (NULL);
 		}
-		m = 0;
-		while (m < k)
-		{
+		for (m = 0; m < k; m++)
 			s[j][m] = str[i++];
-			m++;
-		}
 		s[j][m] = 0;
 	}
 	s[j] = NULL;
