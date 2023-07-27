@@ -98,15 +98,13 @@ int _alias(info_t *info)
 		}
 		return (0);
 	}
-	index = 1;
-	while (info->argv[index])
+	for (index = 1; info->argv[index]; index++)
 	{
 		p = _strchr(info->argv[index], '=');
 		if (p)
 			set_al(info, info->argv[index]);
 		else
 			print_al(node_starts_with(info->al, info->argv[index], '='));
-		index++;
 	}
 
 	return (0);
