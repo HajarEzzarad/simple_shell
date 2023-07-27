@@ -40,7 +40,7 @@ int _mcd(info_t *info)
 
 	s = getcwd(buf, 1024);
 	if (!s)
-		_puts("TODO: >>getcwd failure emsg here<<\n");
+		_puts("TODO: >>getcwd failure errormsg here<<\n");
 	if (!info->argv[1])
 	{
 		dir = _getenv(info, "HOME=");
@@ -86,7 +86,7 @@ int _mhelp(info_t *info)
 	char **arg_arr;
 
 	arg_arr = info->argv;
-	_puts("help call\n");
+	_puts("need a help \n");
 	if (0)
 		_puts(*arg_arr);
 	return (0);
