@@ -88,7 +88,7 @@ ssize_t get_input(info_t *info)
 }
 
 /**
- * read_buffer - reads a buffer
+ * read_buffer - a function that reads a buffer
  * @info: parameter struct
  * @buffer: the buffer
  * @i: size
@@ -108,7 +108,7 @@ ssize_t read_buffer(info_t *info, char *buffer, size_t *i)
 }
 
 /**
- * _getline - gets the next line of input from STDIN
+ * _getline - a func that gets the next line of input from STDIN
  * @info: parameter struct
  * @ptr: address of pointer to buffer, preallocated or NULL
  * @length: size of preallocated ptr buffer if not NULL
