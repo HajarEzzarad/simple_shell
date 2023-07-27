@@ -63,9 +63,9 @@ char **list_to_strings(list_t *head)
  */
 size_t print_list(const list_t *h)
 {
-	size_t i;
+	size_t i = 0;
 
-	for (i = 0; h; i++)
+	while (h)
 	{
 		_puts(conv_number(h->num, 10, 0));
 		_putchar(':');
@@ -73,6 +73,7 @@ size_t print_list(const list_t *h)
 		_puts(h->s ? h->s : "(nil)");
 		_puts("\n");
 		h = h->next;
+		i++;
 	}
 	return (i);
 }
@@ -108,13 +109,14 @@ list_t *node_starts_with(list_t *n, char *prefix, char c)
  */
 ssize_t get_node_index(list_t *h, list_t *n)
 {
-	size_t i;
+	size_t i = 0;
 
-	for (i = 0; h; i++)
+	while (h)
 	{
 		if (h == n)
 			return (i);
 		h = h->next;
+		i++;
 	}
 	return (-1);
 }
