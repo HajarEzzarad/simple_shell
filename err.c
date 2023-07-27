@@ -7,15 +7,12 @@
  */
 void _errputs(char *s)
 {
-	int index = 0;
+	int index;
 
 	if (!s)
 		return;
-	while (s[index] != '\0')
-	{
+	for (index = 0; s[index] != '\0'; index++)
 		_errputchar(s[index]);
-		index++;
-	}
 }
 
 /**
@@ -40,7 +37,7 @@ int _errputchar(char c)
 }
 
 /**
- * _putfiledesc - a funcction that writes the character c to given fd
+ * _putfiledesc - a function that writes the character c to given fd
  * @c: The character to print
  * @fd: The filedescriptor
  * Return: On success 1.
@@ -75,7 +72,7 @@ int _putsfiledesc(char *s, int fd)
 		return (0);
 	while (*s)
 	{
-		index += _putfiledesc(*s++, fd);
+		index = index + _putfiledesc(*s++, fd);
 	}
 	return (index);
 }
