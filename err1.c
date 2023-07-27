@@ -131,12 +131,14 @@ void rm_comments(char *buffer)
 {
 	int index;
 
-	for (index = 0; buffer[index] != '\0'; index++)
+	index = 0;
+	while (buffer[index] != '\0')
 	{
 		if (buffer[index] == '#' && (!index || buffer[index - 1] == ' '))
 		{
 			buffer[index] = '\0';
 			break;
 		}
+		index++;
 	}
 }
