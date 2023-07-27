@@ -1,8 +1,8 @@
 #include "shell.h"
 
 /**
- * _history - displays the history list, one command by line, preceded
- * with line numbers, starting at 0.
+ * _history - a function that displays the history list,
+ * one command by line, preceded with line numbers, starting at 0.
  * @info: Structure containing potential arguments.
  *  Return: Always 0
  */
@@ -13,7 +13,7 @@ int _history(info_t *info)
 }
 
 /**
- * unset_al - sets alias to string
+ * unset_al - a function that unsets alias to string
  * @info: parameter struct
  * @s: the string alias
  * Return: Always 0 on success, 1 on error
@@ -35,7 +35,7 @@ int unset_al(info_t *info, char *s)
 }
 
 /**
- * set_al - sets alias to string
+ * set_al - a function that sets alias to string
  * @info: parameter struct
  * @s: the string alias
  *
@@ -56,7 +56,7 @@ int set_al(info_t *info, char *s)
 }
 
 /**
- * print_al - prints an alias string
+ * print_al - a function that prints an alias string
  * @n: the alias node
  * Return: Always 0 on success, 1 on error
  */
@@ -78,7 +78,7 @@ int print_al(list_t *n)
 }
 
 /**
- * _alias - mimics the alias builtin
+ * _alias - a function that mimics the alias builtin
  * @info: Structure containing potential arguments
  *  Return: Always 0
  */
@@ -98,15 +98,17 @@ int _alias(info_t *info)
 		}
 		return (0);
 	}
-	for (index = 1; info->argv[index]; index++)
+
+	index = 1;
+	while (info->argv[index])
 	{
 		p = _strchr(info->argv[index], '=');
 		if (p)
 			set_al(info, info->argv[index]);
 		else
 			print_al(node_starts_with(info->al, info->argv[index], '='));
+		index++;
 	}
-
 	return (0);
 }
 
