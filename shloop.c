@@ -56,11 +56,11 @@ int find_built(info_t *info)
 	built_t builttbl[] = {
 		{"exit", _myexit},
 		{"env", _envm},
-		{"help", _help},
+		{"help", _mhelp},
 		{"history", _history},
 		{"setenv", _setenvm},
 		{"unsetenv", _unsetenvm},
-		{"cd", _cd},
+		{"cd", _mcd},
 		{"alias", _alias},
 		{NULL, NULL}
 	};
