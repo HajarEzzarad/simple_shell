@@ -49,7 +49,8 @@ int _atoi(char *str)
 	int i, sign = 1, flag = 0, op;
 	unsigned int res = 0;
 
-	for (i = 0;  str[i] != '\0' && flag != 2; i++)
+	i = 0;
+	while (str[i] != '\0' && flag != 2)
 	{
 		if (str[i] == '-')
 			sign *= -1;
@@ -62,6 +63,7 @@ int _atoi(char *str)
 		}
 		else if (flag == 1)
 			flag = 2;
+		i++;
 	}
 
 	if (sign == -1)
