@@ -12,7 +12,7 @@ int _myexit(info_t *info)
 
 	if (info->argv[1])
 	{
-		exit = _erroratoi(inf->argv[1]);
+		exit = _erroratoi(info->argv[1]);
 		if (exit == -1)
 		{
 			info->st = 2;
