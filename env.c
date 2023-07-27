@@ -66,13 +66,8 @@ int _unsetenvm(info_t *info)
 		return (1);
 	}
 
-	index = 1;
-
-	while (index <= info->argc)
-	{
+	for (index = 1; index <= info->argc; index++)
 		_unsetenv(info, info->argv[index]);
-		index++;
-	}
 	return (0);
 }
 
@@ -86,12 +81,8 @@ int pop_env_list(info_t *info)
 	list_t *n = NULL;
 	size_t index;
 
-	index = 0;
-	while (environ[index])
-	{
+	for (index = 0; environ[index]; index++)
 		add_node_end(&n, environ[index], 0);
-		index++;
-	}
 	info->env = n;
 	return (0);
 }
