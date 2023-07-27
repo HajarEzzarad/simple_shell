@@ -172,8 +172,8 @@ void rm_comments(char *);
 
 /* built.c */
 int _myexit(info_t *);
-int _cd(info_t *);
-int _help(info_t *);
+int _mcd(info_t *);
+int _mhelp(info_t *);
 
 /* built1.c */
 int _history(info_t *);
