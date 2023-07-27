@@ -64,7 +64,7 @@ typedef struct lists
  *@environ: custom modified copy of environ from LL env
  *@histy: the history node
  *@al: the alias node
- *@envr_chan: on if environ was changed
+ *@envr_chang: on if environ was changed
  *@st: the return status of the last exec'd command
  *@comd_buffer: address of pointer to cmd_buf, on if chaining
  *@comd_buffer_type: CMD_type ||, &&, ;
